@@ -13,6 +13,7 @@
 #  your media keys to call the script with the appropriate argument using tools like Hammerspoon
 #  or Karabiner Elements.
 
+state_file_path=$(cd `dirname $0` && pwd)/mute_state.txt
 error_message="error running script: pass a single argument from this list: [up, down, toggle_mute]"
 current_volume=`osascript -e 'output volume of (get volume settings)'`
 command=$1
@@ -24,11 +25,11 @@ then
 fi
 
 get_mute_state() {
-  if mute_state=$(head -n 1 ./mute_state.txt 2> /dev/null);
+  if mute_state=$(head -n 1 $state_file_path 2> /dev/null);
     then
       echo "mute state: ${mute_state}"
   else
-      echo "-1" > ./mute_state.txt
+      echo "-1" > $state_file_path
       mute_state=-1
   fi
 }
@@ -42,10 +43,10 @@ toggle_mute() {
   if [ $current_volume == "0" ]
     then
       set_volume $mute_state
-      echo "-1" > ./mute_state.txt
+      echo "-1" > $state_file_path
   else
       set_volume 0
-      echo $current_volume > ./mute_state.txt
+      echo $current_volume > $state_file_path
   fi
 }
 
