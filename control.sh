@@ -1,14 +1,8 @@
 #!/bin/sh
 
-# Written by Brandon Annin github.com/niij
-# MIT License
+# Brandon Annin github.com/niij
 
-# This is a script to fix Apple's broken audio system when using external audio devices
-#  that supposedly don't support controlling the volume, but in practice are able to.
-# If you are able to control the volume of a device through System Preferences --> Sound,
-#  but the volume keys don't work, then this is the fix.
-
-# How to use:
+# Usage:
 #  call this script with one of these arguments: [up, down, toggle_mute]. You can override
 #  your media keys to call the script with the appropriate argument using tools like Hammerspoon
 #  or Karabiner Elements.
